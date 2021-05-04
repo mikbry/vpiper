@@ -1,0 +1,121 @@
+<html>
+
+<head>
+  <title>
+    HTML5 video test
+  </title>
+</head>
+
+<body bgcolor="white">
+  <h1>
+    HTML5 video test
+  </h1>
+
+  <div id="result">
+    
+  </div>
+
+
+  <script src="main.js"></script>
+  <script>
+
+    var mimetypes_should = [
+      "video/mp4",
+      'video/mp4; codecs="avc1.42001E"',
+      'video/mp4; codecs="avc1.42001E, mp4a.40.2"',
+      'video/mp4; codecs="avc1.4d401e"',
+      'video/mp4; codecs="avc1.4D401E, mp4a.40.2"',
+      "video/webm",
+      'video/webm; codecs="av1"',
+      'video/webm; codecs="vp8"',
+      'video/webm; codecs="vp8.0, vorbis"',
+      'video/webm; codecs="vp8,vorbis"',
+      'video/webm; codecs="vp8,opus"',
+      'video/webm; codecs="vp9"',
+      'video/webm; codecs="avc1.42001E"',
+      'video/webm; codecs="avc1.42001E,mp4a.40.2"',
+      'video/webm; codecs="avc1.4d401e"',
+      "video/x-matroska",
+      "video/x-matroska;codecs=avc1.42001e",
+      "video/x-matroska;codecs=avc1.64001e",
+      "video/x-matroska;codecs=avc1.640028",
+      "video/x-matroska;codecs=avc1.64002a",
+      "video/x-matroska;codecs=avc1.640030",
+      "video/x-matroska;codecs=avc1.42001e,mp4a.40.2",
+      "video/x-matroska;codecs=vp8",
+      "video/x-matroska;codecs=vp8,opus",
+      "video/x-matroska;codecs=vp8,vorbis",
+      "video/x-matroska;codecs=vp9",
+      "video/x-matroska;codecs=vp9,opus",
+      "video/x-matroska;codecs=vp9,vorbis",
+      "video/x-matroska;codecs=vp9,mp4a.40.2",
+      'video/ogg; codecs="theora,vorbis"',
+      "audio/x-matroska;codecs=opus",
+      "audio/x-matroska;codecs=vorbis",
+      "audio/x-matroska;codecs=mp4a.40.2",
+    ];
+    var mimetypes_not = [
+      'video/mp4; codecs="avc1"',
+      'video/webm; codecs="avc1"',
+      'video/webm; codecs="mp4"',
+      "video/webm;codecs=h264",
+      "video/x-matroska;codecs=h264",
+      "video/x-matroska;codecs=avc1",
+      "video/mkv",
+    ];
+
+    // video_obj = document.createElement("video");
+    result_obj = document.getElementById("result");
+
+    function get_sup(mimetypes) {
+      let result = "";
+
+      mimetypes.forEach((mime) => {
+        /* mse_sup = MediaSource.isTypeSupported(mimetypes[i]);
+        mr_sup = false;
+        try {
+          mr_sup = MediaRecorder.isTypeSupported(mimetypes[i]);
+        } catch (e) {
+          console.log("No MediaRecorder");
+        }
+        vid_sup = video_obj.canPlayType(mimetypes[i]); */
+
+        const mse_color = mime.mediaSourceSupport ? "lightgreen" : "red";
+
+        const mr_color = mime.mediaSourceSupport ?  "lightgreen" : "red";
+
+
+        vid_color = "white";
+        /* if (vid_sup == "maybe")
+          vid_color = "lightblue";
+        if (vid_sup == "probably")
+          vid_color = "lightgreen"; */
+
+        str_sup = "<tr><td>" + mime.name + "</td>" +
+          "<td bgcolor='" + mse_color + "'>" + mime.mediaSourceSupport + "</td>" +
+          "<td bgcolor='" + mr_color + "'>" + mime.mediaSourceSupport + "</td>" +
+          "<td bgcolor='" + vid_color + "'></td>" +
+          "</tr>";
+
+        result += str_sup;
+      });
+
+      return result;
+    }
+    const types = getSupportedMimeTypes();
+    result = "<table border=1><tr><th>mime</th><th>MediaSource</th><th>MediaRecorder</th><th>video element</th></tr>";
+
+    // result += "<tr><th colspan=4>Should work</th></tr>\n";
+    result += get_sup(types);
+    // result += "<tr><th colspan=4>Not expected to work</th></tr>\n";
+    // result += get_sup(mimetypes_not);
+
+    result += "</table>";
+
+    result_obj.innerHTML = result;
+  </script>
+
+
+</body>
+
+</html>
