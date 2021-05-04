@@ -1,5 +1,5 @@
 [package]
-name = "videopipe-core"
+name = "vpiper-core"
 version = "0.1.0"
 authors = ["mikbry <mik@miklabs.com>"]
 edition = "2018"

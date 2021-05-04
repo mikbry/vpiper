@@ -5,8 +5,8 @@ async function fetchAndInstantiate(url, importObject) {
  }
 
 (async () => {
-  const { instance } = await fetchAndInstantiate('app/videopipe.wasm');
-  console.log('result=', instance.exports.add(17, 25));
+  const { instance } = await fetchAndInstantiate('app/vpiper.wasm');
+  console.log('result=', instance.exports.getCodecs());
 })();
 
 

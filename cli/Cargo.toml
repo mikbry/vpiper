@@ -1,5 +1,5 @@
 [package]
-name = "videopipe-cli"
+name = "vpiper-cli"
 version = "0.1.0"
 authors = ["mikbry <mik@miklabs.com>"]
 edition = "2018"
