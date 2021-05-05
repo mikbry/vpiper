@@ -15,17 +15,20 @@
 const commonCodecs = {
   h264: {
     fullname: 'Advanced Video Coding',
+    syntax: 'avc1.[.PPCCLL]',
     mime: 'avc1',
     mimes: ['h264', 'h.264', 'avc1'],
-    profiles: ['42000a'],
+    profiles: [{ name: 'Baseline', code: '42000a' }],
+    levels: [{ name: '1', code: '0a' }],
     containers: ['mp4', 'webm'], // Firefox uses WebM as container : https://bugzilla.mozilla.org/show_bug.cgi?id=1562862
     audio: ['mp4a'],
   },
   av1: {
     fullname: 'AOMedia Video 1',
+    syntax: 'av01.P.LLT.DD[.M[.CCC[.cp[.tc[.mc[.F]]]]]]',
     mime: 'av01',
     mimes:['av1'],
-    profiles: ['0.00M.08'],
+    profiles: [{ name: '0', code: '0.00M.08' }],
     containers: ['mp4', 'webm'],
     audio: ['mp4a'],
   },
