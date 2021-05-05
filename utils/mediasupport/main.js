@@ -12,6 +12,48 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+const commonCodecs = {
+  h264: {
+    fullname: 'Advanced Video Coding',
+    mime: 'avc1',
+    mimes: ['h264', 'h.264', 'avc1'],
+    profiles: ['42000a'],
+    containers: ['mp4', 'webm'], // Firefox uses WebM as container : https://bugzilla.mozilla.org/show_bug.cgi?id=1562862
+    audio: ['mp4a'],
+  },
+  av1: {
+    fullname: 'AOMedia Video 1',
+    mime: 'av01',
+    mimes:['av1'],
+    profiles: ['0.00M.08'],
+    containers: ['mp4', 'webm'],
+    audio: ['mp4a'],
+  },
+  h265: {
+    fullname: 'High Efficiency Video Coding',
+    mime: 'hev1',
+    mimes: ['hvc1'],
+    profiles: ['1.6.L93.B0'],
+    containers: ['mp4'],
+    audio: ['mp4a'],
+  },
+  vp9: {
+    fullname: 'Video Processor 9',
+    mime: 'vp09',
+    mimes: ['vp9', 'vp9.0'],
+    profiles: ['00.50.08'],
+    containers: ['mp4', 'webm'],
+    audio: ['mp4a', 'opus', 'vorbis'],
+  },
+  vp8: {
+    fullname: 'Video Processor 8',
+    mime: 'vp8',
+    mimes: ['vp8.0'],
+    profiles: [],
+    containers: ['mp4', 'webm'],
+    audio: ['mp4a', 'opus', 'vorbis'],
+  }
+}
 const codecs = {
   video: [
     ['h264', 'h.264', 'avc1', 'avc1.42000a'],
