@@ -1,12 +1,10 @@
-async function fetchAndInstantiate(url, importObject) {
-  const response = await fetch(url);
-  const bytes = await response.arrayBuffer();
-  return WebAssembly.instantiate(bytes, importObject);
- }
+import init, { getCodecs } from './vpiper.js';
+
+      
 
 (async () => {
-  const { instance } = await fetchAndInstantiate('app/vpiper.wasm');
-  console.log('result=', instance.exports.getCodecs());
+  await init();
+  console.log('result=', getCodecs());
 })();
 
 

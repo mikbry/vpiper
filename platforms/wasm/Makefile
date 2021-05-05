@@ -1,12 +1,13 @@
-all: www/app/vpiper.wasm
+all: www/app/vpiper_bg.wasm
 
-www/app/vpiper.wasm: target/wasm32-unknown-unknown/release/vpiper_core.wasm
+www/app/vpiper_bg.wasm: pkg/vpiper_bg.wasm
 	mkdir -p www/app
-	cp target/wasm32-unknown-unknown/release/vpiper.wasm www/app/
+	cp pkg/vpiper_bg.wasm www/app
+	cp pkg/vpiper.js www/app
 
-target/wasm32-unknown-unknown/release/vpiper_core.wasm: src/lib.rs
-	cargo build --release --target wasm32-unknown-unknown
-	mv -f target/wasm32-unknown-unknown/release/vpiper_core.wasm target/wasm32-unknown-unknown/release/vpiper.wasm
+pkg/vpiper_bg.wasm: src/lib.rs
+	wasm-pack build --target web --out-name vpiper
 
 clean:
-	rm -R target www/app/*.wasm
+	rm -Rf pkg target www/app/vpiper_bg.wasm www/app/vpiper.js
+  
