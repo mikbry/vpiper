@@ -13,7 +13,7 @@
 // limitations under the License.
 use wasm_bindgen::prelude::*;
 use web_sys::{MediaSource, MediaRecorder};
-use vpiper::codecs::{AVCodec, VIDEO_MIME};
+use vpiper::codecs::{list_available_codecs};
 
 macro_rules! console_log {
     ($($t:tt)*) => (log(&format_args!($($t)*).to_string()))
@@ -25,18 +25,22 @@ extern "C" {
     fn log(s: &str);
 }
 
+fn is_decoder_supported(mime:&str) -> bool {
+    let supported = MediaSource::is_type_supported(&mime);
+    console_log!("mime decoder support: {:?} {}", mime, supported);
+    supported
+}
+
+fn is_encoder_supported(mime:&str) -> bool {
+    let supported = MediaRecorder::is_type_supported(&mime);
+    console_log!("mime encoder support: {:?} {}", mime, supported);
+    supported
+}
+
 #[wasm_bindgen(js_name = "getCodecs")]
 pub fn get_codecs() -> JsValue {
-    let mime = format!("{}/mp4", &VIDEO_MIME);
-    let media_source_support = MediaSource::is_type_supported(&mime);
-    let media_recorder_support = MediaRecorder::is_type_supported(&mime);
-    console_log!("mediaSource support {:?}  {:?}", mime,media_source_support);
-    let codec = AVCodec {
-        name: String::from("mp4"),
-        mime: mime.to_string(),
-        decoder: media_source_support,
-        encoder: media_recorder_support,
-    };
-    let codecs = [codec];
+    let available = list_available_codecs(is_decoder_supported, is_encoder_supported);
+    console_log!("codecs  available: {:?}", available);
+    let codecs = available;
     JsValue::from_serde(&codecs).unwrap()
 }

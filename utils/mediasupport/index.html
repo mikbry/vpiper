@@ -82,7 +82,7 @@
 
         const mse_color = mime.mediaSourceSupport ? "lightgreen" : "red";
 
-        const mr_color = mime.mediaSourceSupport ?  "lightgreen" : "red";
+        const mr_color = mime.mediaRecorderSupport ?  "lightgreen" : "red";
 
 
         vid_color = "white";
@@ -93,7 +93,7 @@
 
         str_sup = "<tr><td>" + mime.name + "</td>" +
           "<td bgcolor='" + mse_color + "'>" + mime.mediaSourceSupport + "</td>" +
-          "<td bgcolor='" + mr_color + "'>" + mime.mediaSourceSupport + "</td>" +
+          "<td bgcolor='" + mr_color + "'>" + mime.mediaRecorderSupport + "</td>" +
           "<td bgcolor='" + vid_color + "'></td>" +
           "</tr>";
 

@@ -59,7 +59,7 @@ const commonCodecs = {
 }
 const codecs = {
   video: [
-    ['h264', 'h.264', 'avc1', 'avc1.42000a'],
+    ['h264', 'h.264', 'avc1', 'avc1.42000a', 'avc1.42E01E'],
     ['h265', 'h.265', 'hevc', 'hvc1', 'hev1', 'hev1.1.6.L93.B0', 'hvc1.1.6.L93.B0'],
     ['vp9', 'vp9.0'],
     ['vp8', 'vp8.0'],
