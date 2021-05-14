@@ -1,5 +1,5 @@
 # VPiper
-Opensource Video cross-platform solution to transcode, transform and stream in Realtime.
+Future of cross-platform solution to transcode, transform and stream media contents in realtime using hardware acceleration and AI.
 
 Modern technical stack:
 - Rust and WASM for security
